@@ -90,14 +90,14 @@ cols_per_row = st.sidebar.slider(
     "Select the number of columns per row:",
     min_value=2,
     max_value=24,
-    value=14,  # Default value
+    value=10,  # Default value
     step=1
 )
 cols_per_row_output = st.sidebar.slider(
     "Select the number of columns per row for output:",
     min_value=5,
     max_value=24,
-    value=16, # Default value
+    value=10, # Default value
     step=1
 )
 show_sliders = st.sidebar.checkbox("Show Weight Sliders")
@@ -330,7 +330,9 @@ for tier, units in tiered_counters.items():
                     f"""
                     <div style="text-align: center;">
                         <img src="data:image/jpeg;base64,{img_base64}" style="width:100%; border-radius: 10px;">
-                        <p><b>{tech_name if tech_name else ""}</b></p>
+                        <p style="margin: 0; text-align: center; height: 3.5em; line-height: 1.15em; font-size: 1em;">
+                            {unit}
+                        </p>
                     </div>
                     """,
                     unsafe_allow_html=True
