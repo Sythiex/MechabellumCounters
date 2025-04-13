@@ -139,18 +139,18 @@ unit_matrix = {
     "Fang":           [D, C, D, A, F, B, D, F, C, F, A, B, D, D, D, A, F, F, F, C, B, D, B, B, D, F, F, D, F],
     "Hound":          [A, A, C, D, D, F, C, D, D, B, F, F, D, C, D, D, F, D, D, D, C, D, F, F, D, D, D, D, F],
     "Marksman":       [D, D, B, C, S, D, D, D, D, D, A, D, B, D, D, S, A, C, B, D, D, D, D, A, D, A, C, D, B],
-    "Arclight":       [S, S, B, F, C, F, S, D, D, F, F, F, D, D, F, F, F, F, D, F, F, D, F, F, F, D, D, D, F],
+    "Arclight":       [S, S, B, F, C, F, A, D, D, F, F, F, D, F, D, D, F, D, D, F, F, D, F, F, F, B, D, D, F],
     "Wasp":           [S, D, S, C, S, C, D, S, S, S, B, D, S, S, A, S, F, A, A, A, B, S, B, B, A, S, D, D, C],
-    "Mustang":        [D, B, D, B, F, B, C, F, F, D, A, C, D, D, D, B, D, D, F, D, D, D, B, B, D, D, D, D, D],
+    "Mustang":        [D, B, D, B, D, B, C, F, F, D, A, C, D, D, D, B, D, D, F, D, D, D, B, B, D, D, D, D, D],
     "Sledgehammer":   [A, S, B, C, A, F, S, C, D, B, F, F, D, D, D, B, F, F, D, F, D, D, F, F, F, D, B, D, F],
     "Steel Ball":     [D, D, B, C, A, F, A, B, C, A, F, F, B, D, A, F, F, D, B, C, B, D, F, F, D, B, A, C, F],
     "Stormcaller":    [D, S, D, B, S, F, D, D, D, C, F, F, B, B, F, S, F, S, A, B, A, F, F, F, D, D, A, D, F],
     "Phoenix":        [S, F, S, D, S, D, D, S, A, S, C, S, S, S, S, S, A, S, S, S, D, S, D, C, A, S, B, D, C],
     "Phantom Ray":    [A, D, S, C, S, C, D, S, S, S, C, C, S, S, S, S, A, S, S, S, D, S, D, C, A, S, B, D, C],
     "Tarantula":      [A, A, B, D, B, F, B, B, D, D, F, F, C, D, D, C, F, D, B, D, D, D, F, F, D, B, A, D, F],
-    "Sabertooth":     [D, C, D, C, A, F, B, B, A, D, F, F, A, C, B, A, F, B, A, D, D, D, F, F, D, A, A, A, F],
-    "Rhino":          [C, C, B, C, S, F, B, B, D, S, F, F, B, D, C, A, F, A, A, D, F, D, F, F, F, A, A, A, F],
-    "Hacker":         [D, F, C, F, S, F, D, D, S, F, F, F, D, D, D, C, F, D, D, F, D, D, F, F, F, A, A, D, F],
+    "Sabertooth":     [D, C, D, C, S, F, B, B, A, D, F, F, A, C, B, A, F, B, A, D, D, D, F, F, D, A, A, A, F],
+    "Rhino":          [C, C, B, C, A, F, B, B, D, S, F, F, B, D, C, A, F, A, A, D, F, D, F, F, F, A, A, A, F],
+    "Hacker":         [D, F, C, F, A, F, D, D, S, F, F, F, D, D, D, C, F, D, D, F, D, D, F, F, F, A, A, D, F],
     "Wraith":         [S, B, S, D, S, S, B, A, A, S, D, D, A, A, A, S, C, A, A, A, F, A, D, D, A, S, D, D, F],
     "Scorpion":       [D, S, A, D, A, F, A, A, S, D, F, F, B, D, D, A, F, C, S, D, D, D, F, F, D, S, S, B, F],
     "Vulcan":         [S, S, A, D, B, F, S, B, D, D, F, F, D, D, D, C, F, D, C, D, D, D, F, F, D, A, B, D, F],
@@ -160,8 +160,8 @@ unit_matrix = {
     "Raiden":         [S, D, S, C, S, D, D, S, S, S, A, A, S, S, S, S, S, S, S, S, D, B, C, D, S, S, A, B, D],
     "Overlord":       [S, D, S, D, S, D, D, S, S, S, D, D, S, S, S, S, S, S, S, S, D, S, B, C, S, S, A, A, A],
     "War Factory":    [B, A, A, A, S, F, A, S, A, B, F, F, S, A, A, D, F, A, S, B, D, A, F, F, C, S, A, A, F],
-    "Fire Badger":    [S, S, B, D, B, F, A, C, D, A, F, F, D, D, D, D, F, F, D, F, D, D, F, F, F, C, B, D, F],
-    "Typhoon":        [A, S, B, D, C, S, B, D, D, D, D, D, B, D, F, D, C, F, D, D, D, D, D, D, D, D, C, D, D],
+    "Fire Badger":    [S, S, B, D, D, F, A, C, D, A, F, F, D, D, D, D, F, F, D, F, D, D, F, F, F, C, B, D, F],
+    "Typhoon":        [A, S, B, D, B, S, B, D, D, D, D, D, B, D, F, D, C, F, D, D, D, D, D, D, D, D, C, D, D],
     "Farseer":        [C, A, A, D, A, A, B, B, D, C, C, C, C, D, D, B, A, D, B, D, D, D, D, D, D, B, C, C, D],
     "Abyss":          [S, S, S, C, S, B, A, S, S, S, D, D, S, S, S, S, S, S, S, S, D, S, A, D, S, S, A, B, C],
 }
@@ -247,6 +247,7 @@ def classify_by_tier(best_counters):
     }
 
     for unit, score in best_counters:
+        unit += f' - {round(score, 2)}'
         if 4 < score <= 5:
             tier_bins["S Tier (4-5 points)"].append(unit)
         elif 3 < score <= 4:
@@ -271,14 +272,12 @@ for tier, units in tiered_counters.items():
     if units:  # Only display if there are units in the tier
         cols = st.columns(cols_per_row_output)
         for idx, unit in enumerate(units):
-            # Check for base unit and tech name
+            # Pull unit name from display string
             if ":" in unit:
-                base_unit, tech_name = unit.split(":", 1)
-                base_unit = base_unit.strip()
-                tech_name = tech_name.strip()
+                base_unit = unit.split(':', 1)[0]
             else:
-                base_unit = unit
-                tech_name = None
+                base_unit = unit.split('-', 1)[0]
+            base_unit = base_unit.strip()
 
             img_path = os.path.join(image_folder, unit_images[base_unit])
             img_base64 = get_image_as_base64(img_path)
