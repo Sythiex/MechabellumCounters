@@ -167,75 +167,33 @@ unit_matrix = {
 }
 
 # add individual units with tech. <Unit Name>: <Tech Name>
-unit_overrides = {
-    "Crawler: Acid": {"War Factory": B, "Sandworm": B},
-    "Fang: Rage": {"Stormcaller": C},
-    "Fang: Ignite": {"Fortress": A, "Melting Point": A, "Sandworm": B, "Raiden": A, "Overlord": A, "War Factory": A},
-    "Marksman: Anti-Air": {"Phantom Ray": S, "Wrait": S, "Phoenix": S, "Overlord": S, "Raiden": S},
-    "Arclight: Anti-Air": {"Wasp": S, "Wrait": D},
-    "Arclight: Charged-Shot": {"Sledgehammer": B, "Steel Ball": A, "Rhino": C, "Vulcan": B},
-    "Wasp: Anti-Air": {"Overlord": A},
-    "Mustang: Anti-Air": {"Phantom Ray": A, "Wrait": B, "Overlord": A},
-    "Mustang: Missile": {"Stormcaller": B, "Phantom Ray": A, "Farseer": A},
-    "Mustang: Range": {"Farseer": A},
-    "Sledgehammer: Armor-Piercing": {"Rhino": B},
-    "Sledgehammer: Range": {"Vulcan": C},
-    "Steel Ball: Range": {"War Factory": C},
-    "Phoenix: Range": {"Farseer": C},
-    "Phantom Ray: Armor": {"Mustang": A},
-    "Tarantula: Anti-Air": {"Wasp": S, "Phoenix": D, "Phantom Ray": C, "Wrait": A},
-    "Rhino: Whirlwind": {"Steel Ball": B},
-    "Hacker: Range": {"Tarantula": C, "Vulcan": A},
-    "Rhino: Field-Main": {"Typhoon": A},
-    "Scorpion: Range+Siege": {"Stormcaller": A},
-    "Scorpion: Doubleshot+Range+Siege+Acid": {"Fortress": B, "Melting Point": B},
-    "Fortress: Anti-Air": {"Wasp": B},
-    "Fortress: Fang": {"Steel Ball": A, "Sandworm": C},
-    "Melting Point: Energy-Diff": {"Fang": B, "Wasp": B, "Mustang": B, "Sledgehammer": A},
-    "Sandworm: Anti-Air": {"Wasp": B, "Phoenix": A, "Phantom Ray": C, "Wrait": A, "Raiden": A, "Overlord": C},
-    "Overlord: Mothership": {"Phoenix": A, "Overlord": C},
-    "Typhoon: Anti-Air": {"Phantom Ray": A, },
-    "Farseer: Missile": {"Stormcaller": B, "Phantom Ray": A, "Overlord": B},
-}
+unit_overrides = {} # todo: test and add units with tech
 
-UNITS = list(unit_matrix.keys())
-UNITS_TECH = list(unit_overrides.keys())
-
-# Function to calculate the counter score
 def get_counter_score(selected_units, unit_matrix, weights):
-    all_units = UNITS + UNITS_TECH
-    scores = {unit: 0 for unit in all_units}
-    div = {unit: 0 for unit in all_units}
+    base_units = list(unit_matrix.keys())
 
-    for selected in selected_units:
+    if unit_overrides:
+        for unit_override in unit_overrides.keys(): # loop through the unit overrides (units with tech)
+            base_unit = unit_override.split(':', 1)[0] # get the base unit name
+            matrix_scores = unit_matrix[base_unit].copy()  # make a copy of the base unit scores
+            for unit_to_modify in unit_overrides[unit_override].keys(): # loop through the units that have overrides
+                unit_to_modify_index = base_units.index(unit_to_modify) # get the index of the unit to modify
+                matrix_scores[unit_to_modify_index] = unit_overrides[unit_override][unit_to_modify] # replace the score with the override score
+            unit_matrix[unit_override] = matrix_scores # add the modified unit to the unit matrix
+
+    scores = {unit: 0 for unit in list(unit_matrix.keys())}
+    div = {unit: 0 for unit in list(unit_matrix.keys())}
+
+    for selected_unit in selected_units:
         for unit, counters in unit_matrix.items():
-            index = UNITS.index(selected)
-            scores[unit] += counters[index] * weights[selected]
-            div[unit] += weights[selected]
-        for unit, counters in unit_overrides.items():
-            if selected in counters:
-                scores[unit] += counters[selected] * weights[selected]
-                div[unit] += weights[selected]
+            index = base_units.index(selected_unit)
+            scores[unit] += counters[index] * weights[selected_unit]
+            div[unit] += weights[selected_unit]
 
     if (len(selected_units) > 0):
         scores = {k: scores[k] / div[k] if scores[k]>0 else 0 for k in scores.keys()}
     return sorted(scores.items(), key=lambda x: x[1], reverse=True)
-
-selected_units = st.session_state.selected_units
-# Normalize the weights to make their sum equal to 1
-raw_weights = st.session_state.weights
-total_weight = sum(raw_weights.values())
-weights = {unit: weight / total_weight for unit, weight in raw_weights.items()}
-best_counters = get_counter_score(selected_units, unit_matrix, weights)
-
-#
-# output code
-#
-# Display the best counter units
-#st.write("Best Counter Units:")
-#for unit, score in best_counters:
-#    st.write(f"{unit}: {score}")
-
+    
 # Function to classify units into tiers based on score
 def classify_by_tier(best_counters):
     tier_bins = {
@@ -261,7 +219,12 @@ def classify_by_tier(best_counters):
 
     return tier_bins
 
-# Example usage
+selected_units = st.session_state.selected_units
+# Normalize the weights to make their sum equal to 1
+raw_weights = st.session_state.weights
+total_weight = sum(raw_weights.values())
+weights = {unit: weight / total_weight for unit, weight in raw_weights.items()}
+
 best_counters = get_counter_score(selected_units, unit_matrix, weights)
 tiered_counters = classify_by_tier(best_counters)
 
